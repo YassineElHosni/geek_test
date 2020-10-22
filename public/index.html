@@ -1,0 +1,134 @@
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+    <!-- <link rel="stylesheet" href="lib/css/bootstrap.min.css"/> -->
+    <script type="text/javascript" src="lib/js/jquery-2.2.0.min.js"></script>
+    <script type="text/javascript" src="lib/js/vue.js"></script>
+    <script type="text/javascript" src="lib/js/vue-material.min.js"></script>
+
+    <script type="text/javascript" src="js/main-vue.js"></script>
+    <link rel="stylesheet" href="css/main-style.css">
+    <link rel="stylesheet" href="css/dashbord-style.css">
+</head>
+
+<body>
+
+    <header>
+        LOGO
+        <i class="glyphicon glyphicon-ban-circle"></i>
+        <i class="glyphicon glyphicon-warning-sign"></i>
+        <i class="glyphicon glyphicon-link"></i>
+        <i class="glyphicon glyphicon-warning-sign"></i>
+        <i class="glyphicon glyphicon-warning-sign"></i>
+        <i class="glyphicon glyphicon-th-large"></i>
+    </header>
+    <div class="container col-sm-12" id="main">
+        <!-- message aria -->
+        <div>
+            <div class="error-msg alert alert-danger col-sm-12"></div>
+            <div class="success-msg alert alert-success col-sm-12"></div>
+        </div>
+
+
+        <!-- signup-form -->
+        <div id="sign-up-box" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="panel-title">Sign Up</div>
+                    <div class="section-header">
+                        <a id="btn-signin-get" v-on:click.prevent="getSignin()">Sign In</a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" role="form" v-on:submit.prevent="signup()">
+                        <div class="form-group">
+                            <label for="new_email" class="col-md-3 control-label">Email</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" v-model="new_email" name="new_email" placeholder="New email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="new_password" class="col-md-3 control-label">Password</label>
+                            <div class="col-md-9">
+                                <input type="password" class="form-control" v-model="new_password" name="new_password" placeholder="New password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button id="btn-signup" type="submit" class="btn btn-info">
+									<i class="icon-hand-right"></i> &nbsp Sign Up
+								</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- signin-form -->
+        <div id="sign-in-box" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="panel-title">Sign In</div>
+                </div>
+                <div style="padding-top:30px" class="panel-body">
+
+                    <form id="loginform" class="form-horizontal" role="form" v-on:submit.prevent="signin()">
+                        <div style="margin-bottom: 25px" class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input id="login-email" v-model="email" type="text" class="form-control" name="email" value="" placeholder="email">
+                        </div>
+                        <div style="margin-bottom: 25px" class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input id="login-password" v-model="password" type="password" class="form-control" name="password" placeholder="password">
+                        </div>
+                        <div style="margin-top:10px" class="form-group">
+                            <div class="col-sm-12 controls">
+                                <button id="btn-login" type="submit" class="btn btn-success">Login</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 control">
+                                <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
+                                    Don't have an account!
+                                    <a id="btn-signup-get" v-on:click.prevent="getSignup()">Sign Up Here</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- dashbord -->
+        <div id="dashbord-box" class="col">
+            <div class="section-header mb-2">
+                <a id="btn-signout" v-on:click.prevent="signout()"><b>Sign Out</b></a>
+            </div>
+            <br>
+            <div class="row">
+                <div class="" v-for="section in sections">
+                    <div class="row">
+                        <div class="alert alert-info" role="alert">
+                            <h4 class="alert-heading">{{ section.title }}</h4>
+                            <p>{{ section.short_description }}</p>
+                            <hr>
+                            <p v-html="section.long_description" class="mb-0">{{ section.long_description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <footer>
+        <p>copyright © 2020</p>
+    </footer>
+</body>
+
+</html>
